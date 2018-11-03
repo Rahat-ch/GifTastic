@@ -20,6 +20,7 @@ $(document).ready(function() {
     for (var i = 0; i < car.length; i++) {
       var carButton = $("<button>");
       carButton.addClass("gifButtons");
+      carButton.addClass("btn btn-outline-secondary");
       carButton.html(car[i]);
       carButton.attr("data-name", car[i]);
       $("#buttonDisplay").append(carButton);
@@ -79,12 +80,16 @@ $(document).ready(function() {
   });
 
   //add new buttons from user input
+
+
+
   $('#addCar').click(function(e) {
     e.preventDefault();
     var newButton = $("input").val();
     car.push(newButton);
     $("#buttonDisplay").empty();
     printButtons();
+    $('#addCarForm').find('input:text').val('');
   });
 
 

@@ -3,38 +3,21 @@
   margin-right: 40px;
 }
 
-form{
-  margin-left: 80%;
-  font-size: 24px;
-}
-
-input{
-  height: 20px;
-}
 
 button{
-  background-color: #666666;
-  font-size: 24px;
-  color: white;
-  cursor: pointer;
   margin-right: 15px;
-  border: 3px solid white;
+
 
 }
 
 #addCar{
-  background-color: #666666;
-  font-size: 24px;
-  color: white;
-  cursor: pointer;
-  margin-right: 15px;
-  border: 3px solid white;
   margin-top: 15px;
-  height: auto;
 }
 
 body{
-  background-color: #d9d7d7;
+  background-color: #999999;
 }
 
-button:hover { border-width: 1px; }
+.jumbotron{
+  background-color: #d9d7d7;
+}
