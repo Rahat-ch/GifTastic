@@ -1,13 +1,4 @@
-//still need to do:
-//if user wants to add another button they can do so on the form and hit add button which will push the user input into the array and display this as a new button
-//click events for all buttons
-// once clicked ajax gets the info from giphy api to display ten images
-//when images are displayed add in some random info and a download link for the gify
-// when images display the are static - when you click on them they will be swapped from static gifs into working gifs
-//grab the api link with a
 
-
-//jquery will run once the document is ready
 $(document).ready(function() {
 
 
@@ -31,15 +22,16 @@ $(document).ready(function() {
   //create all buttons when page loads
   window.onload = printButtons();
 
-  function gifDisplay() {
-
-  };
+  // function gifDisplay() {
+  //
+  // };
 
   //click function for all of the dynamically created buttons - after clicking ten stil gifs append to the gifArea
   $(document).on('click', '.gifButtons', function() {
     $("#gifArea").empty();
     var carName = $(this).data('name');
     var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + carName + "&api_key=RSiqdQSgdinLvFRhZoh4VVKeQy9gotru&limit=10";
+    var wikiURL = "https://en.wikipedia.org/w/api.php?action=query&prop=extracts&format=json&exintro=&titles=" +carName;
     $.ajax({
         url: queryURL,
         method: "GET"
@@ -65,7 +57,17 @@ $(document).ready(function() {
         }
 
       })
-  });
+
+        $.getJSON('https://en.wikipedia.org/api/rest_v1/page/summary/' + carName, function(data) {
+         // wikipedia api to get a summary based on button already created or new buttons added
+                    summaryExtract = data.extract;
+       //(only getJSON function worked with the api, .ajax and get kept giving me errors until I found this on stacked overflow)
+                    console.log(summaryExtract);
+                    $("#info").html(summaryExtract); //where the summary is shown on the page
+           });
+        });
+
+
 
   //make gifs animate with click
   $(document).on('click', '.carGifs', function() {
@@ -79,9 +81,17 @@ $(document).ready(function() {
     }
   });
 
+  //prevent submit button from working if there is no input
+
+  function disableSubmit(){
+    $('#addCar').prop('disabled',true);
+    $('#carInput').keyup(function(){
+        $('#addCar').prop('disabled', this.value == "" ? true : false);
+    })
+  };
+
+  disableSubmit();
   //add new buttons from user input
-
-
 
   $('#addCar').click(function(e) {
     e.preventDefault();
@@ -90,7 +100,11 @@ $(document).ready(function() {
     $("#buttonDisplay").empty();
     printButtons();
     $('#addCarForm').find('input:text').val('');
+    disableSubmit();
   });
+
+
+
 
 
 });

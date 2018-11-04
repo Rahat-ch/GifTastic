@@ -6,6 +6,8 @@
 
 button{
   margin-right: 15px;
+  /*To make it look nice on mobile marin top too  */
+  margin-top: 15px;
 
 
 }
