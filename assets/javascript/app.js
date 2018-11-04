@@ -14,7 +14,7 @@ $(document).ready(function() {
       carButton.addClass("btn btn-outline-secondary");
       carButton.html(car[i]);
       carButton.attr("data-name", car[i]);
-      $("#buttonDisplay").append(carButton);
+      $("#buttonDisplay").prepend(carButton);
 
     }
   };
@@ -58,10 +58,10 @@ $(document).ready(function() {
 
       })
 
+
+        //for some reason can't use ajax for this api - not sure why - another classmate ran into this same issue - we eventually found the getjson funciton on stack overflow would be awesome if you can lave something in the comment about why this wouldn't work with ajax the wikipedia api documention was no help
         $.getJSON('https://en.wikipedia.org/api/rest_v1/page/summary/' + carName, function(data) {
-         // wikipedia api to get a summary based on button already created or new buttons added
                     summaryExtract = data.extract;
-       //(only getJSON function worked with the api, .ajax and get kept giving me errors until I found this on stacked overflow)
                     console.log(summaryExtract);
                     $("#info").html(summaryExtract); //where the summary is shown on the page
            });
